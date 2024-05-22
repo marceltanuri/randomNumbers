@@ -1,0 +1,36 @@
+<h1>Random Numbers</h1>
+
+<h3>
+    Define your random number parameters
+</h3>
+
+<div style="float: left; width: 450px;">
+    <textarea id="config" style="height: 120px; width: 400px;">
+{
+    "from" : 1,
+    "to" : 70,
+    "quantity" : 4
+}
+</textarea>
+    <br /><br />
+    <button id="run">Execute</button>
+</div>
+
+<div>
+    <h1 id="randomNums"></h1>
+</div>
+
+<script src="randomNum.js"></script>
+<script>
+    const random = new RandomNumbers()
+
+    document.querySelector("#run").addEventListener("click", function (e) {
+        random.setConfig(JSON.parse(document.querySelector("#config").value))
+        try {
+            const regex = /,/gi;
+            document.querySelector("#randomNums").innerHTML = random.run().join().replaceAll(regex,", ")
+        } catch (error) {
+            document.querySelector("#randomNums").innerHTML = error
+        }
+    })
+</script>
